@@ -6,13 +6,12 @@ A production-ready Next.js web application built for scalability, performance, a
 
 # GitHub Badges
 
-![GitHub last commit](https://img.shields.io/github/last-commit/USERNAME/REPOSITORY)
-![GitHub repo size](https://img.shields.io/github/repo-size/USERNAME/REPOSITORY)
-![GitHub issues](https://img.shields.io/github/issues/USERNAME/REPOSITORY)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/USERNAME/REPOSITORY)
-![GitHub license](https://img.shields.io/github/license/USERNAME/REPOSITORY)
+![GitHub last commit](https://img.shields.io/github/last-commit/yasinaraftajad/app-ui-admin)
+![GitHub repo size](https://img.shields.io/github/repo-size/yasinaraftajad/app-ui-admin)
+![GitHub issues](https://img.shields.io/github/issues/yasinaraftajad/app-ui-admin)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/yasinaraftajad/app-ui-admin)
+![GitHub license](https://img.shields.io/github/license/yasinaraftajad/app-ui-admin)
 
-*Replace `USERNAME` and `REPOSITORY` with your GitHub account and repository name.*
 
 ---
 
@@ -43,7 +42,7 @@ git --version
 
 # Installation
 
-## Step 1: Clone the Repository
+## Step 1: Clone the app-ui-admin
 
 ```bash
 git clone git@github.com:YasinArafatAjad/app-ui-admin.git

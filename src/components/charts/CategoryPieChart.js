@@ -64,6 +64,7 @@ const CategoryPieChart = () => {
               innerRadius={40}
               paddingAngle={2}
               dataKey="value"
+              cornerRadius={5}
             >
               {categoryData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />

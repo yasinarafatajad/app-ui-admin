@@ -2,14 +2,15 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 const salesData = [
+  { name: 'Sun', sales: 4200 },
   { name: 'Mon', sales: 4000 },
   { name: 'Tue', sales: 3000 },
   { name: 'Wed', sales: 5000 },
   { name: 'Thu', sales: 4500 },
   { name: 'Fri', sales: 6000 },
   { name: 'Sat', sales: 5500 },
-  { name: 'Sun', sales: 4200 },
 ];
+const todayIndex = new Date().getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
 
 const SalesBarChart = () => {
   return (
@@ -54,7 +55,7 @@ const SalesBarChart = () => {
               {salesData.map((entry, index) => (
                 <Cell 
                   key={`cell-${index}`} 
-                  fill={index === salesData.length - 2 ? 'var(--primary)' : 'var(--primary-half)'} 
+                  fill={index === todayIndex ? 'var(--primary)' : 'var(--primary-half)'} 
                 />
               ))}
             </Bar>

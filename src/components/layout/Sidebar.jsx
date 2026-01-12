@@ -14,7 +14,7 @@ import { usePathname } from 'next/navigation';
 // import { useAuth } from '../../contexts/AuthContext';
 
 const navItems = [
-  { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+  // { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { path: '/products', icon: Package, label: 'Products' },
   { path: '/orders', icon: ShoppingCart, label: 'Orders' },
   { path: '/customers', icon: Users, label: 'Customers' },
@@ -28,7 +28,7 @@ const Sidebar = () => {
   const { user, logout } = true;
 
   return (
-    <aside className="hidden md:flex flex-col w-64 bg-red-400 card border-r border-border h-screen sticky top-0">
+    <aside className="hidden md:flex flex-col w-64 bg-card border-r border-border h-screen sticky top-0">
       {/* Logo */}
       <div className="flex items-center gap-3 px-6 h-16 border-b border-border">
         <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center">

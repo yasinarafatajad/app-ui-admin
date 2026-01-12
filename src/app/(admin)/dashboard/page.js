@@ -5,7 +5,7 @@ import CategoryPieChart from '../../../components/charts/CategoryPieChart';
 import Link from 'next/link';
 import OrderRow from '../../../components/ui/OrderRow';
 import Image from 'next/image';
-import PageHeader from '../../../components/layout/PageHeader';
+// import PageHeader from '../../../components/layout/PageHeader';
 
 export const metadata = {
   title: "Dashboard | Admin Panel",
@@ -105,10 +105,10 @@ const dashboard = () => {
 
   return (
     <div className="min-h-screen">
-      <PageHeader 
+      {/* <PageHeader 
         title="Dashboard" 
         subtitle="Welcome back, Admin"
-      />
+      /> */}
 
       <div className="px-4 py-4 md:px-6 md:py-6 space-y-6">
         {/* Stats Grid */}

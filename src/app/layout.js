@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Sidebar from '../components/layout/Sidebar';
+import PageHeader from '../components/layout/PageHeader';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -25,9 +26,15 @@ export default function RootLayout({ children }) {
       >
         <div className="flex">
           {/* sidebar component */}
-        <Sidebar />
-        {/* main component */}
-        <main className='w-full'>{children}</main>
+          <Sidebar />
+
+          {/* main component */}
+          <main className="w-full flex flex-col">
+            {/* page header component */}
+            <PageHeader title="Dashboard" subtitle="Welcome back, Admin" />
+            {/* dynamic components */}
+            {children}
+          </main>
         </div>
         {/* bottom navbar for mobile */}
       </body>

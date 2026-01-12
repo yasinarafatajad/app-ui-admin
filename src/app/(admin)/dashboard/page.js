@@ -1,4 +1,11 @@
-import { DollarSign, ShoppingCart, Package, Users, TrendingUp, ArrowRight } from 'lucide-react';
+import {
+  DollarSign,
+  ShoppingCart,
+  Package,
+  Users,
+  TrendingUp,
+  ArrowRight,
+} from 'lucide-react';
 import StatsCard from '../../../components/ui/StatsCard';
 import SalesBarChart from '../../../components/charts/SalesBarChart';
 import CategoryPieChart from '../../../components/charts/CategoryPieChart';
@@ -8,8 +15,8 @@ import Image from 'next/image';
 // import PageHeader from '../../../components/layout/PageHeader';
 
 export const metadata = {
-  title: "Dashboard | Admin Panel",
-  description: "Admin dashboard overview and analytics",
+  title: 'Dashboard | Admin Panel',
+  description: 'Admin dashboard overview and analytics',
 };
 
 const dashboard = () => {
@@ -105,11 +112,6 @@ const dashboard = () => {
 
   return (
     <div className="min-h-screen">
-      {/* <PageHeader 
-        title="Dashboard" 
-        subtitle="Welcome back, Admin"
-      /> */}
-
       <div className="px-4 py-4 md:px-6 md:py-6 space-y-6">
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
@@ -119,7 +121,10 @@ const dashboard = () => {
         </div>
 
         {/* Charts Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ animationDelay: '150ms' }}>
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+          style={{ animationDelay: '150ms' }}
+        >
           <SalesBarChart />
           <CategoryPieChart />
         </div>
@@ -156,7 +161,10 @@ const dashboard = () => {
         <div className="animate-fade-in" style={{ animationDelay: '300ms' }}>
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-semibold">Recent Orders</h2>
-            <Link href="/orders" className="text-sm text-primary flex items-center gap-1 hover:underline">
+            <Link
+              href="/orders"
+              className="text-sm text-primary flex items-center gap-1 hover:underline"
+            >
               View all <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -171,18 +179,25 @@ const dashboard = () => {
         <div className="animate-fade-in" style={{ animationDelay: '400ms' }}>
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-semibold">Top Products</h2>
-            <Link href="/products" className="text-sm text-primary flex items-center gap-1 hover:underline">
+            <Link
+              href="/products"
+              className="text-sm text-primary flex items-center gap-1 hover:underline"
+            >
               View all <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
           <div className="bg-card rounded-xl shadow-card overflow-hidden">
             {topProducts.map((product, index) => (
-              <div 
+              <div
                 key={product.name}
-                className={`flex items-center gap-4 p-4 ${index !== topProducts.length - 1 ? 'border-b border-border' : ''}`}
+                className={`flex items-center gap-4 p-4 ${
+                  index !== topProducts.length - 1
+                    ? 'border-b border-border'
+                    : ''
+                }`}
               >
-                <Image 
-                  src={product.image} 
+                <Image
+                  src={product.image}
                   alt={product.name}
                   width={48}
                   height={48}
@@ -190,7 +205,9 @@ const dashboard = () => {
                 />
                 <div className="flex-1 min-w-0">
                   <p className="font-medium text-sm truncate">{product.name}</p>
-                  <p className="text-xs text-muted-foreground">{product.sales} sales</p>
+                  <p className="text-xs text-muted-foreground">
+                    {product.sales} sales
+                  </p>
                 </div>
                 <span className="font-semibold text-sm">{product.revenue}</span>
               </div>

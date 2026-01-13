@@ -1,5 +1,4 @@
 'use client'
-// import { NavLink, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   Package, 
@@ -9,7 +8,6 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-// import { useRouter, usePathname } from 'next/navigation';
 
 const navItems = [
   { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -20,7 +18,6 @@ const navItems = [
 ];
 
 const BottomNav = () => {
-  // const router = useRouter();
   const pathname = usePathname();
 
 

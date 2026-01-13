@@ -31,8 +31,6 @@ export default function RootLayout({ children }) {
 
           {/* main component */}
           <main className="w-full flex flex-col">
-            {/* page header component */}
-            <PageHeader title="Dashboard" subtitle="Welcome back, Admin" />
             {/* dynamic components */}
             {children}
           </main>

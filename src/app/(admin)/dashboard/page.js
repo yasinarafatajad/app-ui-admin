@@ -12,6 +12,7 @@ import CategoryPieChart from '../../../components/charts/CategoryPieChart';
 import Link from 'next/link';
 import OrderRow from '../../../components/ui/OrderRow';
 import Image from 'next/image';
+import PageHeader from '@/components/layout/PageHeader';
 // import PageHeader from '../../../components/layout/PageHeader';
 
 export const metadata = {
@@ -112,6 +113,9 @@ const dashboard = () => {
 
   return (
     <div className="min-h-screen bg-[#f0f4fb]">
+      {/* page header component */}
+            <PageHeader title="Dashboard" subtitle="Welcome back, Admin" />
+            
       <div className="px-4 py-4 md:px-6 md:py-6 space-y-6">
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
@@ -128,7 +132,6 @@ const dashboard = () => {
           <SalesBarChart />
           <CategoryPieChart />
         </div>
-        {/* <p className='text-background' >hello</p> */}
 
         {/* Quick Actions */}
         <div className="grid grid-cols-2 gap-3 animate-fade-in" style={{ animationDelay: '200ms' }}>

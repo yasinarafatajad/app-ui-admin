@@ -2,10 +2,10 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 
 const categoryData = [
-  { name: 'Electronics', value: 45, color: 'var(--primary)' },
-  { name: 'Accessories', value: 28, color: 'var(--accent)' },
-  { name: 'Storage', value: 15, color: 'var(--warning)' },
-  { name: 'Audio', value: 12, color: 'var(--destructive)' },
+  { name: 'Electronics', value: 45, color: 'var(--color-primary)' },
+  { name: 'Accessories', value: 28, color: 'var(--color-accent)' },
+  { name: 'Storage', value: 15, color: 'var(--color-warning)' },
+  { name: 'Audio', value: 12, color: 'var(--color-destructive)' },
 ];
 
 const RADIAN = Math.PI / 180;
@@ -19,7 +19,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
     <text 
       x={x} 
       y={y} 
-      fill="var(--primary-foreground)" 
+      fill="var(--color-primary-foreground)" 
       textAnchor="middle" 
       dominantBaseline="central"
       fontSize={12}
@@ -72,8 +72,8 @@ const CategoryPieChart = () => {
             </Pie>
             <Tooltip 
               contentStyle={{
-                backgroundColor: 'var(--card)',
-                border: '1px solid var(--border)',
+                backgroundColor: 'var(--color-card)',
+                border: '1px solid var(--color-border)',
                 borderRadius: '0.75rem',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
               }}

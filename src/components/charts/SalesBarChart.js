@@ -28,34 +28,34 @@ const SalesBarChart = () => {
       <div className="h-48 md:h-64">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={salesData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" />
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--color-border)" />
             <XAxis 
               dataKey="name" 
               axisLine={false} 
               tickLine={false}
-              tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
+              tick={{ fill: 'var(--color-muted-foreground)', fontSize: 12 }}
             />
             <YAxis 
               axisLine={false} 
               tickLine={false}
-              tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
+              tick={{ fill: 'var(--color-muted-foreground)', fontSize: 12 }}
               tickFormatter={(value) => `৳${value / 1000}k`}
             />
             <Tooltip 
               contentStyle={{
-                backgroundColor: 'var(--card)',
-                border: '1px solid var(--border)',
+                backgroundColor: 'var(--color-card)',
+                border: '1px solid var(--color-border)',
                 borderRadius: '0.75rem',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
               }}
-              labelStyle={{ color: 'var(--foreground)', fontWeight: 600 }}
+              labelStyle={{ color: 'var(--color-foreground)', fontWeight: 600 }}
               formatter={(value) => [`৳${value.toLocaleString()}`, 'Sales']}
             />
             <Bar dataKey="sales" radius={[6, 6, 0, 0]}>
               {salesData.map((entry, index) => (
                 <Cell 
                   key={`cell-${index}`} 
-                  fill={index === todayIndex ? 'var(--primary)' : 'var(--primary-half)'} 
+                  fill={index === todayIndex ? 'var(--color-primary)' : 'var(--color-primary-half)'} 
                 />
               ))}
             </Bar>

@@ -1,115 +1,114 @@
 @import "tailwindcss";
 
 
-@layer base {
-  :root {
+@theme {
     /* Backgrounds */
-    --background: #f0f4fb;        /* light blue-gray */
-    --foreground: #0b1b06;        /* very dark green */
+    --color-background: #f0f4fb;        /* light blue-gray */
+    --color-foreground: #0b1b06;        /* very dark green */
 
-    --card: #ffffff;               /* white */
-    --card-foreground: #0b1b06;   /* very dark green */
+    --color-card: #ffffff;               /* white */
+    --color-card-foreground: #0b1b06;   /* very dark green */
 
-    --popover: #ffffff;            /* white */
-    --popover-foreground: #0b1b06; /* very dark green */
+    --color-popover: #ffffff;            /* white */
+    --color-popover-foreground: #0b1b06; /* very dark green */
 
     /* Primary / Secondary */
-    --primary: #4c7fff;            /* blue */
-    --primary-half: rgba(77, 127, 255, 0.5);        /* blue-half opacity */
-    --primary-foreground: #ffffff; /* white */
+    --color-primary: #4c7fff;            /* blue */
+    --color-primary-half: rgba(77, 127, 255, 0.5);        /* blue-half opacity */
+    --color-primary-foreground: #ffffff; /* white */
 
-    --secondary: #e5e8f1;          /* light gray-blue */
-    --secondary-foreground: #0b1b06; /* very dark green */
+    --color-secondary: #e5e8f1;          /* light gray-blue */
+    --color-secondary-foreground: #0b1b06; /* very dark green */
 
-    --muted: #e5e8f1;              /* light gray-blue */
-    --muted-foreground: #38445b;   /* slate blue-gray */
+    --color-muted: #e5e8f1;              /* light gray-blue */
+    --color-muted-foreground: #38445b;   /* slate blue-gray */
 
-    --accent: #29a66f;             /* green */
-    --accent-foreground: #ffffff;  /* white */
+    --color-accent: #29a66f;             /* green */
+    --color-accent-foreground: #ffffff;  /* white */
 
-    --destructive: #ff2a26;        /* red */
-    --destructive-foreground: #ffffff; /* white */
+    --color-destructive: #ff2a26;        /* red */
+    --color-destructive-foreground: #ffffff; /* white */
 
-    --success: #29a66f;            /* green */
-    --success-foreground: #ffffff; /* white */
+    --color-success: #29a66f;            /* green */
+    --color-success-foreground: #ffffff; /* white */
 
-    --warning: #ffcc19;            /* yellow */
-    --warning-foreground: #ffffff; /* white */
+    --color-warning: #ffcc19;            /* yellow */
+    --color-warning-foreground: #ffffff; /* white */
 
     /* Borders / Inputs / Rings */
-    --border: #e1e3eb;             /* light gray */
-    --input: #e1e3eb;              /* light gray */
-    --ring: #4c7fff;               /* blue */
+    --color-border: #e1e3eb;             /* light gray */
+    --color-input: #e1e3eb;              /* light gray */
+    --color-ring: #4c7fff;               /* blue */
 
     /* Radius */
-    --radius: 0.75rem;
+    --color-radius: 0.75rem;
 
     /* Sidebar */
-    --sidebar-background: #ffffff;           /* white */
-    --sidebar-foreground: #0b1b06;           /* very dark green */
-    --sidebar-primary: #4c7fff;              /* blue */
-    --sidebar-primary-foreground: #ffffff;   /* white */
-    --sidebar-accent: #e5e8f1;               /* light gray-blue */
-    --sidebar-accent-foreground: #0b1b06;    /* very dark green */
-    --sidebar-border: #e1e3eb;               /* light gray */
-    --sidebar-ring: #4c7fff;                 /* blue */
+    --color-sidebar-background: #ffffff;           /* white */
+    --color-sidebar-foreground: #0b1b06;           /* very dark green */
+    --color-sidebar-primary: #4c7fff;              /* blue */
+    --color-sidebar-primary-foreground: #ffffff;   /* white */
+    --color-sidebar-accent: #e5e8f1;               /* light gray-blue */
+    --color-sidebar-accent-foreground: #0b1b06;    /* very dark green */
+    --color-sidebar-border: #e1e3eb;               /* light gray */
+    --color-sidebar-ring: #4c7fff;                 /* blue */
 
     /* Nav */
-    --nav-height: 4rem;
-    --bottom-nav-height: 5rem;
+    --color-nav-height: 4rem;
+    --color-bottom-nav-height: 5rem;
 }
 
 
   .dark {
     /* Backgrounds */
-    --background: #0b1b06;        /* very dark green */
-    --foreground: #f3f8f9;        /* very light cyan/white */
+    --color-background: #0b1b06;        /* very dark green */
+    --color-foreground: #f3f8f9;        /* very light cyan/white */
 
-    --card: #1a1c09;              /* very dark greenish */
-    --card-foreground: #f3f8f9;   /* very light cyan/white */
+    --color-card: #1a1c09;              /* very dark greenish */
+    --color-card-foreground: #f3f8f9;   /* very light cyan/white */
 
-    --popover: #1a1c09;           /* very dark greenish */
-    --popover-foreground: #f3f8f9; /* very light cyan/white */
+    --color-popover: #1a1c09;           /* very dark greenish */
+    --color-popover-foreground: #f3f8f9; /* very light cyan/white */
 
     /* Primary / Secondary */
-    --primary: #4c7fff;           /* blue */
-    --primary-foreground: #ffffff; /* white */
+    --color-primary: #4c7fff;           /* blue */
+    --color-primary-foreground: #ffffff; /* white */
 
-    --secondary: #2f4a2c;         /* dark muted green */
-    --secondary-foreground: #f3f8f9; /* very light cyan/white */
+    --color-secondary: #2f4a2c;         /* dark muted green */
+    --color-secondary-foreground: #f3f8f9; /* very light cyan/white */
 
-    --muted: #2f4a2c;             /* dark muted green */
-    --muted-foreground: #361a42;  /* dark purple/blue */
+    --color-muted: #2f4a2c;             /* dark muted green */
+    --color-muted-foreground: #361a42;  /* dark purple/blue */
 
-    --accent: #29a66f;            /* green */
-    --accent-foreground: #ffffff; /* white */
+    --color-accent: #29a66f;            /* green */
+    --color-accent-foreground: #ffffff; /* white */
 
-    --destructive: #4d0f14;       /* dark red */
-    --destructive-foreground: #f3f8f9; /* very light cyan/white */
+    --color-destructive: #4d0f14;       /* dark red */
+    --color-destructive-foreground: #f3f8f9; /* very light cyan/white */
 
-    --success: #29a66f;           /* green */
-    --success-foreground: #ffffff; /* white */
+    --color-success: #29a66f;           /* green */
+    --color-success-foreground: #ffffff; /* white */
 
-    --warning: #ffcc19;           /* yellow */
-    --warning-foreground: #ffffff; /* white */
+    --color-warning: #ffcc19;           /* yellow */
+    --color-warning-foreground: #ffffff; /* white */
 
     /* Borders / Inputs / Rings */
-    --border: #2f4a2c;            /* dark muted green */
-    --input: #2f4a2c;             /* dark muted green */
-    --ring: #4c7fff;              /* blue */
+    --color-border: #2f4a2c;            /* dark muted green */
+    --color-input: #2f4a2c;             /* dark muted green */
+    --color-ring: #4c7fff;              /* blue */
 
     /* Sidebar */
-    --sidebar-background: #1a1c09;           /* very dark greenish */
-    --sidebar-foreground: #f3f8f9;           /* very light cyan/white */
-    --sidebar-primary: #4c7fff;              /* blue */
-    --sidebar-primary-foreground: #ffffff;   /* white */
-    --sidebar-accent: #2f4a2c;               /* dark muted green */
-    --sidebar-accent-foreground: #f3f8f9;    /* very light cyan/white */
-    --sidebar-border: #2f4a2c;               /* dark muted green */
-    --sidebar-ring: #4c7fff;                 /* blue */
+    --color-sidebar-background: #1a1c09;           /* very dark greenish */
+    --color-sidebar-foreground: #f3f8f9;           /* very light cyan/white */
+    --color-sidebar-primary: #4c7fff;              /* blue */
+    --color-sidebar-primary-foreground: #ffffff;   /* white */
+    --color-sidebar-accent: #2f4a2c;               /* dark muted green */
+    --color-sidebar-accent-foreground: #f3f8f9;    /* very light cyan/white */
+    --color-sidebar-border: #2f4a2c;               /* dark muted green */
+    --color-sidebar-ring: #4c7fff;                 /* blue */
 }
 
-}
+
 
  body {
     @apply font-sans antialiased;

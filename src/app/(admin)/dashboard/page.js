@@ -31,8 +31,8 @@ const dashboard = () => {
     {
       title: 'Orders',
       value: '356',
-      change: '+12.5%',
-      changeType: 'positive',
+      change: '-12.5%',
+      changeType: 'negative',
       icon: ShoppingCart,
     },
     {
@@ -111,7 +111,7 @@ const dashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#f0f4fb]">
       <div className="px-4 py-4 md:px-6 md:py-6 space-y-6">
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
@@ -128,34 +128,35 @@ const dashboard = () => {
           <SalesBarChart />
           <CategoryPieChart />
         </div>
+        {/* <p className='text-background' >hello</p> */}
 
         {/* Quick Actions */}
-        {/* <div className="grid grid-cols-2 gap-3 animate-fade-in" style={{ animationDelay: '200ms' }}>
+        <div className="grid grid-cols-2 gap-3 animate-fade-in" style={{ animationDelay: '200ms' }}>
           <Link 
-            to="/products/new" 
-            className="bg-primary/10 rounded-xl p-4 flex items-center gap-3 hover:bg-primary/20 transition-colors active:scale-[0.98]"
+            href="/products/new" 
+            className="bg-[#4c7fff]/10 rounded-xl p-4 flex items-center gap-3 hover:bg-[#4c7fff]/20 transition-colors active:scale-[0.98]"
           >
-            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-              <Package className="w-5 h-5 text-primary-foreground" />
+            <div className="w-10 h-10 rounded-lg bg-[#4c7fff] flex items-center justify-center">
+              <Package className="w-5 h-5 text-[#fff]" />
             </div>
             <div>
               <p className="font-medium text-sm">Add Product</p>
-              <p className="text-xs text-muted-foreground">Quick add</p>
+              <p className="text-xs text-[#38445b]">Quick add</p>
             </div>
           </Link>
           <Link 
-            to="/orders" 
-            className="bg-accent/10 rounded-xl p-4 flex items-center gap-3 hover:bg-accent/20 transition-colors active:scale-[0.98]"
+            href="/orders" 
+            className="bg-[#29a66f]/10 rounded-xl p-4 flex items-center gap-3 hover:bg-[#29a66f]/20 transition-colors active:scale-[0.98]"
           >
-            <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
-              <TrendingUp className="w-5 h-5 text-accent-foreground" />
+            <div className="w-10 h-10 rounded-lg bg-[#29a66f] flex items-center justify-center">
+              <TrendingUp className="w-5 h-5 text-[#fff]" />
             </div>
             <div>
               <p className="font-medium text-sm">View Sales</p>
-              <p className="text-xs text-muted-foreground">Analytics</p>
+              <p className="text-xs text-[#38445b]">Analytics</p>
             </div>
           </Link>
-        </div> */}
+        </div>
 
         {/* Recent Orders */}
         <div className="animate-fade-in" style={{ animationDelay: '300ms' }}>

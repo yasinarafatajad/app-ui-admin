@@ -14,7 +14,7 @@ import { usePathname } from 'next/navigation';
 // import { useAuth } from '../../contexts/AuthContext';
 
 const navItems = [
-  // { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+  { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { path: '/products', icon: Package, label: 'Products' },
   { path: '/orders', icon: ShoppingCart, label: 'Orders' },
   { path: '/customers', icon: Users, label: 'Customers' },

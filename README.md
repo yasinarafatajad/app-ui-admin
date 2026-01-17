@@ -8,9 +8,6 @@ A production-ready Next.js web application built for scalability, performance, a
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/yasinarafatajad/app-ui-admin)
 ![GitHub repo size](https://img.shields.io/github/repo-size/yasinarafatajad/app-ui-admin)
-![GitHub issues](https://img.shields.io/github/issues/yasinarafatajad/app-ui-admin)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/yasinarafatajad/app-ui-admin)
-![GitHub license](https://img.shields.io/github/license/yasinarafatajad/app-ui-admin)
 
 
 ---
@@ -27,7 +24,7 @@ The structure is optimized for clean code, scalability, and deployment on platfo
 Make sure the following are installed:
 
 * Node.js version 18 or later  
-* npm or yarn  
+* npm or yarn  or pnp
 * Git  
 
 Verify by running:

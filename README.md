@@ -1,6 +1,6 @@
 # Next.js Application
 
-A production-ready Next.js web application built for scalability, performance, and modern web development workflows.
+A production-ready Next.js web application admin panel built for scalability, performance, and modern web development workflows.
 
 ---
 
@@ -16,6 +16,15 @@ A production-ready Next.js web application built for scalability, performance, a
 
 This project is built with **Next.js**, a React-based framework that enables server-side rendering, static generation, API routes, and modern frontend tooling.  
 The structure is optimized for clean code, scalability, and deployment on platforms such as Vercel, Netlify, and cloud servers.
+
+---
+
+## Dashboard Features
+
+- Add New Product page
+- Edit Product page
+- Product Details page
+
 
 ---
 

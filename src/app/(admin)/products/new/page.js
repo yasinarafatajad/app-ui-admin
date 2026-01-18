@@ -1,7 +1,7 @@
-'use client'
+'use client';
 import { useState, useEffect } from 'react';
 import { ArrowLeft, Upload, X, Save, Loader2 } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import PageHeader from '@/components/layout/PageHeader';
 import Image from 'next/image';
 // import { useToast } from '../hooks/use-toast';
@@ -18,7 +18,9 @@ const mockProducts = [
 const ProductForm = () => {
   const router = useRouter();
   // const { toast } = useToast();
-  const isEditing = false;
+  const params = useParams();
+  const productId = params?.id;
+  const isEditing = Boolean(productId);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -29,22 +31,26 @@ const ProductForm = () => {
     image: '',
   });
 
-  // useEffect(() => {
-  //   if (isEditing) {
-  //     const product = mockProducts.find(p => p.id === id);
-  //     if (product) {
-  //       setFormData(product);
-  //     }
-  //   }
-  // }, [id, isEditing]);
+useEffect(() => {
+  if (!isEditing) return;
+
+  const product = mockProducts.find(p => p.id === productId);
+  if (product) {
+    setFormData({
+      name: product.name,
+      category: product.category,
+      price: product.price,
+      stock: product.stock,
+      description: product.description,
+      image: product.image,
+    });
+  }
+}, [isEditing, productId]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleImageUrl = (e) => {
-    setFormData(prev => ({ ...prev, image: e.target.value }));
   };
 
   const removeImage = () => {
@@ -97,8 +103,7 @@ const ProductForm = () => {
           {formData.image ? (
             <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-secondary">
               <Image
-              width={100}
-              height={100}
+              fill
                 src={formData.image}
                 alt="Product preview"
                 className="object-cover"

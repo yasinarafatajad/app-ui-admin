@@ -21,9 +21,7 @@ const ProductCard = ({ product, delay = 0, onEdit, onDelete }) => {
   const handleEdit = (e) => {
     e.stopPropagation();
     setShowMenu(false);
-    if (onEdit) {
-      onEdit(product.id);
-    }
+    router.push(`/products/${product.id}/edit`)
   };
 
   const handleView = (e) => {

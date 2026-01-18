@@ -181,7 +181,7 @@ const Products = () => {
               <SheetHeader>
                 <SheetTitle>Filter Products</SheetTitle>
               </SheetHeader>
-              <div className="py-6 space-x-4 space-y-6">
+              <div className="p-6 space-y-6">
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Category</label>
                   <Select value={category} onValueChange={setCategory}>

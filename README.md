@@ -25,6 +25,9 @@ The structure is optimized for clean code, scalability, and deployment on platfo
 - Edit Product page
 - Product Details page
 
+- Orders page
+- Order Details page
+- Add New Order page
 
 ---
 

@@ -55,10 +55,10 @@ const ProductDetail = () => {
     setDeleting(true);
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
-    toast({
-      title: "Product deleted",
-      description: `${product.name} has been deleted successfully.`,
-    });
+    // toast({
+    //   title: "Product deleted",
+    //   description: `${product.name} has been deleted successfully.`,
+    // });
     router.push('/products');
   };
 
@@ -120,7 +120,7 @@ const ProductDetail = () => {
             <div className="flex gap-3">
               <Button
                 className="flex-1"
-                onClick={() => navigate(`/products/edit/${product.id}`)}
+                onClick={() => router.push(`/products/${product.id}/edit`)}
               >
                 <Edit className="w-4 h-4 mr-2" />
                 Edit Product

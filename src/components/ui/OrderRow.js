@@ -35,7 +35,7 @@ const OrderRow = ({ order, delay = 0 }) => {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <span className="font-bold">${order.total}</span>
+          <span className="font-bold">৳{order.total}</span>
           <ChevronRight className="w-5 h-5 text-muted-foreground" />
         </div>
       </div>

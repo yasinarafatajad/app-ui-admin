@@ -24,7 +24,7 @@ const dashboard = () => {
   const stats = [
     {
       title: 'Total Revenue',
-      value: '$45,231',
+      value: '৳45,231',
       change: '+20.1%',
       changeType: 'positive',
       icon: DollarSign,
@@ -91,21 +91,21 @@ const dashboard = () => {
     {
       name: 'Wireless Earbuds Pro',
       sales: 245,
-      revenue: '$12,250',
+      revenue: '৳12,250',
       image:
         'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=100&h=100&fit=crop',
     },
     {
       name: 'Smart Watch Series 5',
       sales: 189,
-      revenue: '$37,800',
+      revenue: '৳37,800',
       image:
         'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=100&h=100&fit=crop',
     },
     {
       name: 'Laptop Stand Aluminum',
       sales: 156,
-      revenue: '$4,680',
+      revenue: '৳4,680',
       image:
         'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=100&h=100&fit=crop',
     },

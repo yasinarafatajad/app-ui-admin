@@ -1,16 +1,22 @@
 "use client"
 import { ChevronLeft } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 
 const PageHeader = ({ title, subtitle, showBack = false, actions }) => {
-const router = useRouter();
+   const handleGoBack = () => {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = "/";
+    }
+  };
+  
   return (
     <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border">
       <div className="flex items-center justify-between px-4 h-14 md:px-6 md:h-16">
         <div className="flex items-center gap-3">
           {showBack && (
             <button
-              onClick={() => router.push(-1)}
+              onClick={handleGoBack}
               className="w-8 h-8 -ml-2 flex items-center justify-center rounded-full hover:bg-secondary transition-colors touch-manipulation"
             >
               <ChevronLeft className="w-5 h-5" />

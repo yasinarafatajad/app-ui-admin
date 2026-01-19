@@ -72,7 +72,7 @@ const CustomerDetail = () => {
         actions={
           <div className="flex gap-2">
             <button 
-              onClick={() => router.push(`/customers/edit/${customer.id}`)}
+              onClick={() => router.push(`/customers/${customer.id}/edit`)}
               className="w-10 h-10 bg-primary text-primary-foreground rounded-xl flex items-center justify-center hover:opacity-90 active:scale-95 transition-all"
             >
               <Edit2 className="w-5 h-5" />

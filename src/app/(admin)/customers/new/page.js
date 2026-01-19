@@ -33,27 +33,27 @@ const CustomerForm = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // useEffect(() => {
-  //   if (isEditing) {
-  //     const customer = customersData.find(c => c.id === parseInt(id));
-  //     if (customer) {
-  //       const addressParts = customer.address.split(', ');
-  //       const cityStateZip = addressParts.slice(1).join(', ');
-  //       const cityState = cityStateZip.split(' ');
+  useEffect(() => {
+    if (isEditing) {
+      const customer = customersData.find(c => c.id === parseInt(id));
+      if (customer) {
+        const addressParts = customer.address.split(', ');
+        const cityStateZip = addressParts.slice(1).join(', ');
+        const cityState = cityStateZip.split(' ');
         
-  //       setFormData({
-  //         name: customer.name,
-  //         email: customer.email,
-  //         phone: customer.phone,
-  //         address: addressParts[0] || '',
-  //         city: cityState[0]?.replace(',', '') || '',
-  //         state: cityState[1] || '',
-  //         zipCode: cityState[2] || '',
-  //         notes: customer.notes || '',
-  //       });
-  //     }
-  //   }
-  // }, [id, isEditing]);
+        setFormData({
+          name: customer.name,
+          email: customer.email,
+          phone: customer.phone,
+          address: addressParts[0] || '',
+          city: cityState[0]?.replace(',', '') || '',
+          state: cityState[1] || '',
+          zipCode: cityState[2] || '',
+          notes: customer.notes || '',
+        });
+      }
+    }
+  }, [id, isEditing]);
 
   const validateForm = () => {
     const newErrors = {};

@@ -21,17 +21,19 @@ The structure is optimized for clean code, scalability, and deployment on platfo
 
 ## Dashboard Features
 
+- Products page
+- Product Details page
 - Add New Product page
 - Edit Product page
-- Product Details page
 
 - Orders page
 - Order Details page
-- Edit/Add New Order page
+- Add New Order page
 
 - Customers page
 - Customer Details page
 - Add New Customer page
+- Edit Customer page
 
 ---
 

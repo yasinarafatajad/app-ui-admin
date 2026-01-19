@@ -27,7 +27,11 @@ The structure is optimized for clean code, scalability, and deployment on platfo
 
 - Orders page
 - Order Details page
-- Add New Order page
+- Edit/Add New Order page
+
+- Customers page
+- Customer Details page
+- Add New Customer page
 
 ---
 

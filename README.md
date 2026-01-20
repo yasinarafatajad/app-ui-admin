@@ -19,6 +19,13 @@ The structure is optimized for clean code, scalability, and deployment on platfo
 
 ---
 
+## Project Structure
+
+- `CLIENT/` - Frontend React application (Dashboard & future Public site)
+- `SERVER/` - Backend Node.js/Express API with MongoDB and Mongoose
+
+---
+
 ## Dashboard Features
 
 - Products page

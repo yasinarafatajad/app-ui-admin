@@ -2,9 +2,9 @@
 import { 
   LayoutDashboard, 
   Package, 
+  BarChart3,
   ShoppingCart, 
   Users, 
-  Settings 
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -14,6 +14,7 @@ const navItems = [
   { path: '/products', icon: Package, label: 'Products' },
   { path: '/orders', icon: ShoppingCart, label: 'Orders' },
   { path: '/customers', icon: Users, label: 'Customers' },
+  { path: '/reports', icon: BarChart3, label: 'Reports' },
   // { path: '/settings', icon: Settings, label: 'Settings' },
 ];
 
@@ -44,9 +45,6 @@ const BottomNav = () => {
                     isActive ? 'stroke-[2.5px]' : 'stroke-[2px]'
                   }`} 
                 />
-                {isActive && (
-                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary animate-scale-in" />
-                )}
               </div>
               <span className={`text-[10px] mt-1 font-medium transition-all duration-200 ${
                 isActive ? 'opacity-100' : 'opacity-70'

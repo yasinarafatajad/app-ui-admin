@@ -19,7 +19,7 @@ const navItems = [
   { path: '/orders', icon: ShoppingCart, label: 'Orders' },
   { path: '/customers', icon: Users, label: 'Customers' },
   { path: '/reports', icon: BarChart3, label: 'Reports' },
-  { path: '/settings', icon: Settings, label: 'Settings' },
+  // { path: '/settings', icon: Settings, label: 'Settings' },
 ];
 
 const Sidebar = () => {

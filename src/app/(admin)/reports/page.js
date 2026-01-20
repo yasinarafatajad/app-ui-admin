@@ -45,7 +45,7 @@ const Reports = () => {
         title="Reports"
         subtitle="Analytics overview"
         actions={
-          <button onClick={() => window.print()} className="w-10 h-10 bg-card border border-input rounded-xl flex items-center justify-center hover:bg-secondary transition-colors">
+          <button onClick={() => window.print()} className="w-10 h-10 hidden bg-card border border-input rounded-xl md:flex items-center justify-center hover:bg-secondary transition-colors">
             <Download className="w-5 h-5" />
           </button>
         }

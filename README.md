@@ -46,7 +46,7 @@ The structure is optimized for clean code, scalability, and deployment on platfo
 Make sure the following are installed:
 
 * Node.js version 18 or later  
-* npm or yarn  
+* npm or yarn  or pnp
 * Git  
 
 Verify by running:

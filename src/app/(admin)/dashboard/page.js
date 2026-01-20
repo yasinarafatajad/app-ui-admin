@@ -148,7 +148,7 @@ const dashboard = () => {
             </div>
           </Link>
           <Link 
-            href="/orders" 
+            href="/reports" 
             className="bg-[#29a66f]/10 rounded-xl p-4 flex items-center gap-3 hover:bg-[#29a66f]/20 transition-colors active:scale-[0.98]"
           >
             <div className="w-10 h-10 rounded-lg bg-[#29a66f] flex items-center justify-center">

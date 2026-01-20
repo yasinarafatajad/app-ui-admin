@@ -14,7 +14,7 @@ const navItems = [
   { path: '/products', icon: Package, label: 'Products' },
   { path: '/orders', icon: ShoppingCart, label: 'Orders' },
   { path: '/customers', icon: Users, label: 'Customers' },
-  { path: '/settings', icon: Settings, label: 'Settings' },
+  // { path: '/settings', icon: Settings, label: 'Settings' },
 ];
 
 const BottomNav = () => {

@@ -25,7 +25,7 @@ The structure is optimized for clean code, scalability, and deployment on platfo
 - `SERVER/` - Backend Node.js/Express API with MongoDB and Mongoose
 
 ---
-
+# [FRONTENT]
 ## Dashboard Features
 
 - Products page
@@ -44,6 +44,11 @@ The structure is optimized for clean code, scalability, and deployment on platfo
 
 - Weekly, Monthly, and Yearly Report Analytics page
 
+
+# [BACKEND]
+## Backend Features
+
+- Add Product API (`POST /products`) using Node.js, Express, and Mongoose
 
 
 ---

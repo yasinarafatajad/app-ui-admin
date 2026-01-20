@@ -112,7 +112,7 @@ const dashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f0f4fb]">
+    <div className="min-h-screen bg-background">
       {/* page header component */}
             <PageHeader title="Dashboard" subtitle="Welcome back, Admin" />
             
@@ -140,11 +140,11 @@ const dashboard = () => {
             className="bg-[#4c7fff]/10 rounded-xl p-4 flex items-center gap-3 hover:bg-[#4c7fff]/20 transition-colors active:scale-[0.98]"
           >
             <div className="w-10 h-10 rounded-lg bg-[#4c7fff] flex items-center justify-center">
-              <Package className="w-5 h-5 text-[#fff]" />
+              <Package className="w-5 h-5 text-white" />
             </div>
             <div>
               <p className="font-medium text-sm">Add Product</p>
-              <p className="text-xs text-[#38445b]">Quick add</p>
+              <p className="text-xs text-muted-foreground">Quick add</p>
             </div>
           </Link>
           <Link 
@@ -152,11 +152,11 @@ const dashboard = () => {
             className="bg-[#29a66f]/10 rounded-xl p-4 flex items-center gap-3 hover:bg-[#29a66f]/20 transition-colors active:scale-[0.98]"
           >
             <div className="w-10 h-10 rounded-lg bg-[#29a66f] flex items-center justify-center">
-              <TrendingUp className="w-5 h-5 text-[#fff]" />
+              <TrendingUp className="w-5 h-5 text-white" />
             </div>
             <div>
               <p className="font-medium text-sm">View Sales</p>
-              <p className="text-xs text-[#38445b]">Analytics</p>
+              <p className="text-xs text-muted-foreground">Analytics</p>
             </div>
           </Link>
         </div>

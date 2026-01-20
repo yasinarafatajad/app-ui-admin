@@ -35,6 +35,10 @@ The structure is optimized for clean code, scalability, and deployment on platfo
 - Add New Customer page
 - Edit Customer page
 
+- Weekly, Monthly, and Yearly Report Analytics page
+
+
+
 ---
 
 # System Requirements

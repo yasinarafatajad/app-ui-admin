@@ -19,6 +19,8 @@ The structure is optimized for clean code, scalability, and deployment on platfo
 
 ---
 
+
+
 ## Project Structure
 
 - `CLIENT/` - Frontend React application (Dashboard & future Public site)
@@ -68,6 +70,24 @@ node -v
 npm -v
 git --version
 ```
+
+---
+
+# Deployed
+this website is deployed to cpanel. also intigrated CI/CD model for automation and utilise time of deployment process in update and upgrade.
+
+**Deployment flow:**
+
+Developer
+↓ (push to main)
+GitHub Actions
+↓ (install dependencies & build)
+Static Build Artifacts
+↓ (FTP upload)
+cPanel Hosting
+↓ (serve static files)
+End User (Browser)
+
 
 ---
 

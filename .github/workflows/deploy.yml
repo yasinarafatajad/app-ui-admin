@@ -1,0 +1,38 @@
+name: Deploy InfinityFree cPanel through FTP
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+  steps:
+    - name: Checkout repository
+        uses: actions/checkout@v4
+
+    - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+        
+    - name: Install dependencies
+        working-directory: CLIENT
+        run: npm install
+
+    - name: Build React app
+        working-directory: CLIENT
+        run: npm run build
+
+    - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOSTNAME }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          local-dir: CLIENT/dist/
+          server-dir: /bookshop.rf.gd/htdocs/
+
+    

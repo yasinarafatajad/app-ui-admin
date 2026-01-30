@@ -18,9 +18,10 @@ app.use(express.urlencoded({ extended: true }));
 // all end points
 app.use("/api", productRoutes);
 
+
 // test route
 app.get("/", (req, res) => {
-  res.status(200).send("server working good.");
+  res.status(200).send("server is running.");
 });
 
 // listen to port

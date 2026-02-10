@@ -1,34 +1,39 @@
-# Next.js Application
-
-A production-ready Next.js web application admin panel built for scalability, performance, and modern web development workflows.
+# Project Name : uShop | Dashboard eCommerce
 
 ---
 
-# GitHub Badges
-
-![GitHub last commit](https://img.shields.io/github/last-commit/yasinarafatajad/app-ui-admin)
-![GitHub repo size](https://img.shields.io/github/repo-size/yasinarafatajad/app-ui-admin)
-
-
----
-
-# Project Overview
+## Project Overview
 
 This project is built with **Next.js**, a React-based framework that enables server-side rendering, static generation, API routes, and modern frontend tooling.  
 The structure is optimized for clean code, scalability, and deployment on platforms such as Vercel, Netlify, and cloud servers.
 
 ---
 
-
-
-## Project Structure
-
-- `CLIENT/` - Frontend React application (Dashboard & future Public site)
-- `SERVER/` - Backend Node.js/Express API with MongoDB and Mongoose
+## Time
+- **Duration**: 30 days
+- **Dead Line**: 21 January 2026 - 20 February 2026
+- **Completed**: under Development
 
 ---
-# [FRONTENT]
-## Dashboard Features
+
+## GitHub Badges
+
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/yasinarafatajad/app-ui-admin)
+![GitHub repo size](https://img.shields.io/github/repo-size/yasinarafatajad/app-ui-admin)
+
+---
+
+## Tech Stack
+- **Framework**: Next.Js + Node.Js + Express.Js + MongoDB(mongoose)
+- **Language**: JavaScript (ES6+)
+- **Styling**: Tailwind CSS
+- **Package Manager**: pnpm
+
+---
+
+## Features [FRONTENT]
+**Dashboard**:
 
 - Products page
 - Product Details page
@@ -47,33 +52,40 @@ The structure is optimized for clean code, scalability, and deployment on platfo
 - Weekly, Monthly, and Yearly Report Analytics page
 
 
-# [BACKEND]
-## Backend Features
+## Features [BACKEND]
 
-- Add Product API (`POST /products`) using Node.js, Express, and Mongoose
-
+- Product management API endpoints (CRUD)
+- Order management API endpoints (CRUD)
 
 ---
 
-# System Requirements
+## Project Structure
 
-Make sure the following are installed:
+- `CLIENT/` - Frontend React application (Dashboard & future Public site)
+```text
+CLIENT/
+├── src/app/            Application Global routes
+├── src/app/(admin)     Application Admin routes
+├── src/components/     Reusable components
+├── public/             Static assets
+└── package.json
+```
 
-* Node.js version 18 or later  
-* npm or yarn  or pnp
-* Git  
-
-Verify by running:
-
-```bash
-node -v
-npm -v
-git --version
+- `SERVER/` - Backend Node.js/Express API with MongoDB and Mongoose
+```text
+SERVER/
+├── src/config          Server config
+├── src/controllers     Endpoint controller
+├── src/models          Mongoose Schema Model
+├── src/routes          Endpoints Routes
+├── src/index.js        Api endpoints
+├── .env                Environment variables
+└── package.json
 ```
 
 ---
 
-# Deployed
+## Deployed
 this website is deployed to cpanel. also intigrated CI/CD model for automation and utilise time of deployment process in update and upgrade.
 
 **Deployment flow:**
@@ -91,103 +103,68 @@ End User (Browser)
 
 ---
 
-# Installation
+## Screenshots
 
-## Step 1: Clone the app-ui-admin
+| Name | Screenshot |
+|------|------------|
+| Dashboard (desktop) | ![Dashboard](screenshots/Desktop/Overview.png) |
+| ProductList (desktop) | ![ProductList](screenshots/Desktop/ProductList.png) |
+| Order Details (desktop) | ![Order Details](screenshots/Desktop/OrderDetails.png) |
+| Dashboard (mobile) | ![Dashboard](screenshots/Mobile/Overview.png) |
+
+---
+
+## Installation
+
+### Prerequisites
+- **Node.js** >= 18
+- **npm** >= 9
+- **Package Manager (pnpm)***
+**Install pnpm**:
+```bash
+npm install -g pnpm
+```
+
+### [1]: Clone the app-ui-admin
 
 ```bash
-git clone git@github.com:YasinArafatAjad/app-ui-admin.git
+git clone git@github.com:yasinarafatajad/app-ui-admin.git;
 cd app-ui-admin
+```
 
+### [2]: Install Dependencies
+
+Using pnpm:
+```bash
+pnpm install
+```
+### [3]: Development
+Start the development with hot module replacement:
+```bash
+pnpm dev
+```
+
+### [4]: Build for Production
+Start the production :
+```bash
+pnpm build
 ```
 
 ---
 
-## Step 2: Install Dependencies
-
-Using npm:
-
-```bash
-npm install
-```
-
-Using yarn:
-
-```bash
-yarn install
-```
+## Environment Variables
+Rename the .env.example into .env and replace the placeholder with your own key.
 
 ---
 
-# Environment Variables
-
-Only variables prefixed with `NEXT_PUBLIC_` are accessible in the browser.
-
----
-
-# Run the Development Server
-
-```bash
-npm run dev
-```
-
-or
-
-```bash
-yarn dev
-```
-
-The application will be available at:
-
-```
-http://localhost:3000
-```
+## Author
+**Yasin Arafat Azad**  
+Full-Stack Web Developer (MERN)
 
 ---
 
-# Build for Production
-
-```bash
-npm run build
-```
-
-or
-
-```bash
-yarn build
-```
+## License
+This project is licensed under the **MIT License**.  
+See the `LICENSE` file for details.
 
 ---
-
-# Run Production Server
-
-After building:
-
-```bash
-npm run start
-```
-
-or
-
-```bash
-yarn start
-```
-
----
-
-# Project Structure
-
-```text
-/
-├── src/app/            Application routes
-├── components/         Reusable UI components
-├── public/             Static assets
-├── .env.local          Environment variables
-├── package.json
-└── README.md
-```
-
-
-# License
-
-This project is licensed under the **MIT License**.

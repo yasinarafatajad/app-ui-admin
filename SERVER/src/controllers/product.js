@@ -1,52 +1,48 @@
 import ProductModel from "../models/product.js";
 
 export const AddProduct = async (req, res) => {
+  const {
+    title,
+    description,
+    sku,
+    category,
+    images,
+    color = [],
+    size = [],
+    price,
+    compareAtPrice,
+    stock,
+    isActive = true,
+    brand,
+    tags = [],
+    status = "draft",
+    createdBy,
+  } = req.body;
+
+  const product = {
+    title,
+    description,
+    sku,
+    category,
+    images,
+    color,
+    size,
+    price,
+    compareAtPrice,
+    stock,
+    isActive,
+    brand,
+    tags,
+    status,
+    createdBy,
+  };
+
   try {
-    const {
-      title,
-      description,
-      sku,
-      category,
-      images,
-      color = [],
-      size = [],
-      price,
-      compareAtPrice,
-      stock,
-      isActive = true,
-      brand,
-      tags = [],
-      status = "draft",
-      createdBy,
-    } = req.body;
-
-    const product = await ProductModel.create({
-      title,
-      description,
-      sku,
-      category,
-      images,
-      color,
-      size,
-      price,
-      compareAtPrice,
-      stock,
-      isActive,
-      brand,
-      tags,
-      status,
-      createdBy,
-    });
-
+    const result = await ProductModel.create(product)
     res.status(201).json({ success: true, product });
-    try {
-      console.log('New product added..!');
-
-    } catch (err) {
-      console.log('product add failed.', err);
-    }
+    console.log('New product added..!');
   } catch (err) {
-    console.log(err.message);
+    console.log('product add failed.', err);
   }
 };
 
@@ -99,7 +95,7 @@ export const UpdateProduct = async (req, res) => {
     }
 
     console.log('Product updated successfully.');
-    res.status(200).json(result)
+    res.status(200).json(updatedProduct)
   } catch (error) {
     console.log(error.message);
 

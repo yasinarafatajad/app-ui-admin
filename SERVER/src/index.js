@@ -3,6 +3,7 @@ import "dotenv/config";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import productRoutes from "./routes/products.js";
+import orderRoutes from "./routes/orders.js";
 
 const port = process.env.PORT || 7000;
 const app = express();
@@ -16,7 +17,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // all end points
-app.use("/api", productRoutes);
+app.use("/api/v1", productRoutes);
+app.use("/api/v1", orderRoutes);
 
 
 // test route

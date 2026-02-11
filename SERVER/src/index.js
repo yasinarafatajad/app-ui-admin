@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import productRoutes from "./routes/products.js";
 import orderRoutes from "./routes/orders.js";
+import customerRoutes from "./routes/customer.js";
 
 const port = process.env.PORT || 7000;
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 // all end points
 app.use("/api/v1", productRoutes);
 app.use("/api/v1", orderRoutes);
+app.use("/api/v1", customerRoutes);
 
 
 // test route

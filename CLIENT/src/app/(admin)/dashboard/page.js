@@ -13,6 +13,7 @@ import Link from 'next/link';
 import OrderRow from '../../../components/ui/OrderRow';
 import Image from 'next/image';
 import PageHeader from '@/components/layout/PageHeader';
+import { api } from '@/hooks/useApi/api';
 // import PageHeader from '../../../components/layout/PageHeader';
 
 export const metadata = {
@@ -20,32 +21,36 @@ export const metadata = {
   description: 'Admin dashboard overview and analytics',
 };
 
-const dashboard = () => {
+
+
+const dashboard = async () => {
+// Overview Stats card
+  const {data:Stats}  = await api.get('/getStats');  
   const stats = [
     {
       title: 'Total Revenue',
-      value: '৳45,231',
+      value: `৳${Stats?.totalRevenue > 0 ? Stats?.totalRevenue : 0}`,
       change: '+20.1%',
       changeType: 'positive',
       icon: DollarSign,
     },
     {
       title: 'Orders',
-      value: '356',
+      value: Stats?.totalOrder > 0 ? Stats?.totalOrder : 0,
       change: '-12.5%',
       changeType: 'negative',
       icon: ShoppingCart,
     },
     {
       title: 'Products',
-      value: '128',
+      value: Stats?.totalProduct > 0 ? Stats?.totalProduct : 0,
       change: '+3.2%',
       changeType: 'positive',
       icon: Package,
     },
     {
       title: 'Customers',
-      value: '2,350',
+      value: Stats?.totalCustomer > 0 ? Stats?.totalCustomer : 0,
       change: '+8.1%',
       changeType: 'positive',
       icon: Users,
@@ -114,8 +119,8 @@ const dashboard = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* page header component */}
-            <PageHeader title="Dashboard" subtitle="Welcome back, Admin" />
-            
+      <PageHeader title="Dashboard" subtitle="Welcome back, Admin" />
+
       <div className="px-4 py-4 md:px-6 md:py-6 space-y-6">
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
@@ -135,8 +140,8 @@ const dashboard = () => {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-2 gap-3 animate-fade-in" style={{ animationDelay: '200ms' }}>
-          <Link 
-            href="/products/new" 
+          <Link
+            href="/products/new"
             className="bg-[#4c7fff]/10 rounded-xl p-4 flex items-center gap-3 hover:bg-[#4c7fff]/20 transition-colors active:scale-[0.98]"
           >
             <div className="w-10 h-10 rounded-lg bg-[#4c7fff] flex items-center justify-center">
@@ -147,8 +152,8 @@ const dashboard = () => {
               <p className="text-xs text-muted-foreground">Quick add</p>
             </div>
           </Link>
-          <Link 
-            href="/reports" 
+          <Link
+            href="/reports"
             className="bg-[#29a66f]/10 rounded-xl p-4 flex items-center gap-3 hover:bg-[#29a66f]/20 transition-colors active:scale-[0.98]"
           >
             <div className="w-10 h-10 rounded-lg bg-[#29a66f] flex items-center justify-center">
@@ -194,11 +199,10 @@ const dashboard = () => {
             {topProducts.map((product, index) => (
               <div
                 key={product.name}
-                className={`flex items-center gap-4 p-4 ${
-                  index !== topProducts.length - 1
+                className={`flex items-center gap-4 p-4 ${index !== topProducts.length - 1
                     ? 'border-b border-border'
                     : ''
-                }`}
+                  }`}
               >
                 <Image
                   src={product.image}

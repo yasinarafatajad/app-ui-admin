@@ -5,6 +5,7 @@ import connectDB from "./config/db.js";
 import productRoutes from "./routes/products.js";
 import orderRoutes from "./routes/orders.js";
 import customerRoutes from "./routes/customer.js";
+import statsRoutes from "./routes/stats.js";
 
 const port = process.env.PORT || 7000;
 const app = express();
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // all end points
+app.use("/api/v1", statsRoutes);
 app.use("/api/v1", productRoutes);
 app.use("/api/v1", orderRoutes);
 app.use("/api/v1", customerRoutes);

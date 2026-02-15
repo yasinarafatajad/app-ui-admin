@@ -22,14 +22,13 @@ const customerSchema = new mongoose.Schema(
 
         phone: {
             type: String,
-            required: true,
-            unique: true,
         },
 
         // Authentication
         password: {
             type: String,
             required: true,
+            default: "00000000",
             minlength: 6,
             select: false, // Do not return password by default
         },

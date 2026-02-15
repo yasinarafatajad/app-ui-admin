@@ -1,4 +1,5 @@
 import OrderModel from '../models/order.js'
+import customerModel from '../models/customer.js'
 
 export const GetOrder = async (req, res) => {
     try {
@@ -47,7 +48,19 @@ export const AddOrder = async (req, res) => {
         isPaid
     }
     try {
-        const result = await OrderModel.create(orderData)
+        const order = await OrderModel.create(orderData)
+        const result = await customerModel.findByIdAndUpdate(
+            { _id: user },
+            { $set: { orders: [...prev, _id] } }
+        )
+        if (!order) {
+            res.status(500).json('order placement failed')
+        } else if (!result) {
+            res.status(500).json('order placed but customer data update failed')
+        } else {
+            res.status(200).json('order placed!')
+        }
+
         res.status(200).json(result);
     } catch (err) {
         console.log('Order adding failed :', err.message);

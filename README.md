@@ -116,14 +116,13 @@ End User (Browser)
 
 ## Installation
 
-### Prerequisites
+## Prerequisites
 - **Node.js** >= 18
 - **npm** >= 9
-- **Package Manager (pnpm)***
-**Install pnpm**:
-```bash
-npm install -g pnpm
-```
+
+---
+
+## Installations:
 
 ### [1]: Clone the app-ui-admin
 
@@ -132,19 +131,25 @@ git clone git@github.com:yasinarafatajad/app-ui-admin.git;
 cd app-ui-admin
 ```
 
-### [2]: Install Dependencies
+### [2] Install pnpm
+
+```bash
+npm install -g pnpm
+```
+
+### [3]: Install Dependencies
 
 Using pnpm:
 ```bash
 pnpm install
 ```
-### [3]: Development
+### [4]: Development
 Start the development with hot module replacement:
 ```bash
 pnpm dev
 ```
 
-### [4]: Build for Production
+### [5]: Build for Production
 Start the production :
 ```bash
 pnpm build
@@ -153,7 +158,7 @@ pnpm build
 ---
 
 ## Environment Variables
-Rename the .env.example into .env and replace the placeholder with your own key.
+Rename the .env.example into .env.local and replace the placeholder with your own key.
 
 ---
 

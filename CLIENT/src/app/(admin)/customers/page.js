@@ -27,6 +27,7 @@ const Customers = () => {
     id: c._id,
     name: c.fullName,
     email: c.email,
+    phone: c.phone || '',
     orders: c.orders?.length || 0,
     spent: (c.totalSpent || 0).toLocaleString(),
     joined: new Date(c.createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
@@ -34,7 +35,8 @@ const Customers = () => {
 
   const filteredCustomers = mappedCustomers.filter(customer =>
     customer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    customer.email.toLowerCase().includes(searchQuery.toLowerCase())
+    customer.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    customer.phone.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   if (loading) {

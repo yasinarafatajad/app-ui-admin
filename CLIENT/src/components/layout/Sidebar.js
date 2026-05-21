@@ -1,4 +1,5 @@
 'use client'
+import { useState } from 'react';
 import { 
   LayoutDashboard, 
   Package, 
@@ -13,7 +14,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-// import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '@/contexts/AuthContext';
 
 const navItems = [
   { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -27,8 +28,15 @@ const navItems = [
 
 const Sidebar = () => {
   const pathname = usePathname();
-  // const { user, logout } = useAuth();
-  const { user, logout } = true;
+  const { user, logout } = useAuth();
+  const [imageError, setImageError] = useState(false);
+
+  const isAuthPage = pathname.startsWith('/login') || 
+                     pathname.startsWith('/register') || 
+                     pathname.startsWith('/forgot-password') || 
+                     pathname.startsWith('/register-agent');
+
+  if (isAuthPage) return null;
 
   return (
     <aside className="hidden md:flex flex-col w-64 bg-card border-r border-border h-screen sticky top-0">
@@ -70,13 +78,22 @@ const Sidebar = () => {
       {/* User section */}
       <div className="border-t border-border p-4">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-            <span className="text-primary font-semibold text-sm">
-              {user?.name?.charAt(0) || 'U'}
-            </span>
+          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
+            {user?.image && !imageError ? (
+              <img 
+                src={user.image} 
+                alt={user.fullName || 'User'} 
+                className="w-full h-full object-cover"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <span className="text-primary font-semibold text-sm">
+                {user?.fullName?.charAt(0) || 'U'}
+              </span>
+            )}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="font-medium text-sm truncate">{user?.name || 'User'}</p>
+            <p className="font-medium text-sm truncate">{user?.fullName || 'User'}</p>
             <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
           </div>
         </div>

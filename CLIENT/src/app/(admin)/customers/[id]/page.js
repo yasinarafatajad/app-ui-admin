@@ -11,6 +11,7 @@ const CustomerDetail = () => {
   const [customer, setCustomer] = useState(null);
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     const fetchCustomer = async () => {
@@ -71,8 +72,17 @@ const CustomerDetail = () => {
         {/* Header */}
         <div className="bg-card rounded-xl p-5 shadow-card animate-fade-in">
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-              <span className="text-primary text-2xl font-bold">{customer.fullName?.charAt(0)}</span>
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
+              {customer.image && !imageError ? (
+                <img 
+                  src={customer.image} 
+                  alt={customer.fullName} 
+                  className="w-full h-full object-cover"
+                  onError={() => setImageError(true)}
+                />
+              ) : (
+                <span className="text-primary text-2xl font-bold">{customer.fullName?.charAt(0)}</span>
+              )}
             </div>
             <div>
               <h2 className="text-xl font-semibold">{customer.fullName}</h2>

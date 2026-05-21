@@ -3,6 +3,7 @@ import './globals.css';
 import Sidebar from '../components/layout/Sidebar';
 import PageHeader from '../components/layout/PageHeader';
 import BottomNav from '../components/layout/BottomNav';
+import { AuthProvider } from '@/contexts/AuthContext';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -25,18 +26,20 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex">
-          {/* sidebar component */}
-          <Sidebar />
+        <AuthProvider>
+          <div className="flex">
+            {/* sidebar component */}
+            <Sidebar />
 
-          {/* main component */}
-          <main className="w-full flex flex-col">
-            {/* dynamic components */}
-            {children}
-          </main>
-        </div>
-        {/* bottom navbar for mobile */}
-            <BottomNav />
+            {/* main component */}
+            <main className="w-full flex flex-col">
+              {/* dynamic components */}
+              {children}
+            </main>
+          </div>
+          {/* bottom navbar for mobile */}
+          <BottomNav />
+        </AuthProvider>
       </body>
     </html>
   );

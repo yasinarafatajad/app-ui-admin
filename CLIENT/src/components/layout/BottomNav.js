@@ -24,6 +24,13 @@ const navItems = [
 const BottomNav = () => {
   const pathname = usePathname();
 
+  const isAuthPage = pathname.startsWith('/login') || 
+                     pathname.startsWith('/register') || 
+                     pathname.startsWith('/forgot-password') || 
+                     pathname.startsWith('/register-agent');
+
+  if (isAuthPage) return null;
+
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border shadow-nav safe-bottom md:hidden">

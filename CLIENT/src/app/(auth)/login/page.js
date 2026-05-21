@@ -42,21 +42,19 @@ export default function Login() {
       <div className="flex bg-secondary/50 p-1 rounded-xl mb-6 relative z-10 backdrop-blur-sm border border-border/50">
         <button
           onClick={() => setMethod('email')}
-          className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
-            method === 'email'
+          className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${method === 'email'
               ? 'bg-background shadow-sm text-foreground'
               : 'text-muted-foreground hover:text-foreground'
-          }`}
+            }`}
         >
           Email
         </button>
         <button
           onClick={() => setMethod('mobile')}
-          className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
-            method === 'mobile'
+          className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${method === 'mobile'
               ? 'bg-background shadow-sm text-foreground'
               : 'text-muted-foreground hover:text-foreground'
-          }`}
+            }`}
         >
           Mobile
         </button>
@@ -144,7 +142,8 @@ export default function Login() {
         </button>
       </form>
 
-      <div className="mt-8 relative z-10">
+      {/* or login with google */}
+      {/* <div className="mt-8 relative z-10">
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-border"></div>
@@ -178,7 +177,7 @@ export default function Login() {
             Sign in with Google
           </button>
         </div>
-      </div>
+      </div> */}
 
       <p className="mt-8 text-center text-sm text-muted-foreground relative z-10">
         Don't have an admin account?{' '}

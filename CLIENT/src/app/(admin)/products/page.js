@@ -47,6 +47,7 @@ const stockOptions = [
   { label: 'Out of Stock', value: 'out' },
 ];
 const sortOptions = [
+  { label: 'Last Added', value: 'last-added' },
   { label: 'Name (A-Z)', value: 'name-asc' },
   { label: 'Name (Z-A)', value: 'name-desc' },
   { label: 'Price: Low to High', value: 'price-asc' },
@@ -63,7 +64,7 @@ const Products = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [priceRange, setPriceRange] = useState(0);
   const [stockFilter, setStockFilter] = useState('all');
-  const [sortBy, setSortBy] = useState('name-asc');
+  const [sortBy, setSortBy] = useState('last-added');
   const [deleteProduct, setDeleteProduct] = useState(null);
   
   // Pagination state
@@ -87,6 +88,7 @@ const Products = () => {
         stock: p.stock,
         image: p.images?.[0]?.url || '',
         description: p.description,
+        createdAt: p.createdAt,
       })));
     } catch (err) {
       console.log('Failed to fetch products:', err.message);
@@ -110,6 +112,7 @@ const Products = () => {
     })
     .sort((a, b) => {
       switch (sortBy) {
+        case 'last-added': return new Date(b.createdAt) - new Date(a.createdAt);
         case 'name-asc': return a.name.localeCompare(b.name);
         case 'name-desc': return b.name.localeCompare(a.name);
         case 'price-asc': return a.price - b.price;
@@ -152,11 +155,11 @@ const Products = () => {
   const clearFilters = () => {
     setPriceRange(0);
     setStockFilter('all');
-    setSortBy('name-asc');
+    setSortBy('last-added');
     setSearchQuery('');
   };
 
-  const hasActiveFilters = priceRange !== 0 || stockFilter !== 'all' || sortBy !== 'name-asc';
+  const hasActiveFilters = priceRange !== 0 || stockFilter !== 'all' || sortBy !== 'last-added';
 
   if (loading) {
     return (
@@ -284,10 +287,10 @@ const Products = () => {
                 <X className="w-3 h-3 cursor-pointer" onClick={() => setStockFilter('all')} />
               </span>
             )}
-            {sortBy !== 'name-asc' && (
+            {sortBy !== 'last-added' && (
               <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
                 {sortOptions.find(o => o.value === sortBy)?.label}
-                <X className="w-3 h-3 cursor-pointer" onClick={() => setSortBy('name-asc')} />
+                <X className="w-3 h-3 cursor-pointer" onClick={() => setSortBy('last-added')} />
               </span>
             )}
           </div>

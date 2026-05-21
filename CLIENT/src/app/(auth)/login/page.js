@@ -2,16 +2,26 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Store, Phone, Mail, ArrowRight, Loader2, Eye, EyeOff } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function Login() {
   const [method, setMethod] = useState('email'); // 'email' or 'mobile'
   const [isLoading, setIsLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const { login } = useAuth();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 1500); // Simulate API call
+    setError('');
+    const result = await login(email.trim(), password);
+    setIsLoading(false);
+    if (!result.success) {
+      setError(result.message || 'Invalid credentials');
+    }
   };
 
   return (
@@ -52,6 +62,12 @@ export default function Login() {
         </button>
       </div>
 
+      {error && (
+        <div className="bg-destructive/10 border border-destructive/20 text-destructive text-sm rounded-xl p-3 mb-4 animate-fade-in relative z-10">
+          {error}
+        </div>
+      )}
+
       <form onSubmit={handleLogin} className="space-y-4 relative z-10">
         <div className="space-y-4 animate-fade-in">
           {method === 'email' ? (
@@ -64,6 +80,8 @@ export default function Login() {
                 <input
                   type="email"
                   required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="admin@example.com"
                   className="w-full h-12 pl-11 pr-4 bg-background/50 backdrop-blur-sm border border-input focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl outline-none transition-all"
                 />
@@ -79,6 +97,8 @@ export default function Login() {
                 <input
                   type="tel"
                   required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="+880 1XXXXXXXXX"
                   className="w-full h-12 pl-11 pr-4 bg-background/50 backdrop-blur-sm border border-input focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl outline-none transition-all"
                 />
@@ -97,6 +117,8 @@ export default function Login() {
               <input
                 type={showPass ? "text" : "password"}
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 className="w-full h-12 px-4 pr-10 bg-background/50 backdrop-blur-sm border border-input focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl outline-none transition-all"
               />

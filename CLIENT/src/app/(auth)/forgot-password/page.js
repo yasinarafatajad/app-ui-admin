@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Search, UserCircle, Mail, MessageSquare, Phone, KeyRound, ArrowRight, ArrowLeft, Loader2, CheckCircle2, Eye, EyeOff } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function ForgotPassword() {
   const [step, setStep] = useState(1);
@@ -9,19 +10,17 @@ export default function ForgotPassword() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedUser, setSelectedUser] = useState(null);
   const [otpMethod, setOtpMethod] = useState('');
-  const [otp, setOtp] = useState(['', '', '', '', '', '']);
+  const [otp, setOtp] = useState(['', '', '', '']);
   const [timer, setTimer] = useState(60);
   const [canResend, setCanResend] = useState(false);
   const [passwords, setPasswords] = useState({ new: '', confirm: '' });
   const [passError, setPassError] = useState('');
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
-  
-  // Mock users
-  const mockUsers = [
-    { id: 1, name: 'Admin User', email: 'a***n@example.com', phone: '017****1234', avatar: 'A' },
-    { id: 2, name: 'Agent John', email: 'j***n@delivery.com', phone: '018****5678', avatar: 'J' }
-  ];
+  const [usersList, setUsersList] = useState([]);
+  const [generalError, setGeneralError] = useState('');
+
+  const { searchCustomer, forgotPassword, verifyOtp, resetPassword } = useAuth();
 
   // OTP Timer
   useEffect(() => {
@@ -34,13 +33,25 @@ export default function ForgotPassword() {
     return () => clearInterval(interval);
   }, [step, timer]);
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      setStep(2); // Move to select user step
-    }, 1000);
+    setGeneralError('');
+    const result = await searchCustomer(searchQuery);
+    setIsLoading(false);
+    if (result.success) {
+      if (result.customers.length === 0) {
+        setGeneralError('No user found matching search query');
+      } else if (result.customers.length === 1) {
+        setSelectedUser(result.customers[0]);
+        setStep(3); // skip selection and go directly to OTP options
+      } else {
+        setUsersList(result.customers);
+        setStep(2); // Move to select user step
+      }
+    } else {
+      setGeneralError(result.message || 'Error searching user');
+    }
   };
 
   const handleSelectUser = (user) => {
@@ -48,15 +59,19 @@ export default function ForgotPassword() {
     setStep(3); // Move to OTP method selection
   };
 
-  const handleSendOTP = (method) => {
+  const handleSendOTP = async (method) => {
     setOtpMethod(method);
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
+    setGeneralError('');
+    const result = await forgotPassword(selectedUser.id, method);
+    setIsLoading(false);
+    if (result.success) {
       setTimer(60);
       setCanResend(false);
       setStep(4); // Move to OTP verification
-    }, 1000);
+    } else {
+      setGeneralError(result.message || 'Failed to send OTP');
+    }
   };
 
   const handleOtpChange = (index, value) => {
@@ -65,26 +80,30 @@ export default function ForgotPassword() {
     newOtp[index] = value;
     setOtp(newOtp);
     // Auto focus next
-    if (value && index < 5) {
+    if (value && index < 3) {
       document.getElementById(`otp-${index + 1}`)?.focus();
     }
   };
 
-  const handleVerifyOTP = () => {
-    if (otp.join('').length === 6) {
+  const handleVerifyOTP = async () => {
+    if (otp.join('').length === 4) {
       setIsLoading(true);
-      setTimeout(() => {
-        setIsLoading(false);
+      setGeneralError('');
+      const result = await verifyOtp(selectedUser.id, otp.join(''));
+      setIsLoading(false);
+      if (result.success) {
         setStep(5); // Move to set password
-      }, 1000);
+      } else {
+        setGeneralError(result.message || 'Invalid or expired OTP');
+      }
     }
   };
 
-  const handleResetPassword = (e) => {
+  const handleResetPassword = async (e) => {
     e.preventDefault();
     
     // Strong password policy check
-    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})");
     if (!strongRegex.test(passwords.new)) {
       setPassError("Password must contain at least 8 chars, 1 uppercase, 1 lowercase, 1 number, and 1 special char.");
       return;
@@ -96,10 +115,13 @@ export default function ForgotPassword() {
 
     setPassError('');
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
+    const result = await resetPassword(selectedUser.id, otp.join(''), passwords.new);
+    setIsLoading(false);
+    if (result.success) {
       setStep(6); // Success
-    }, 1500);
+    } else {
+      setPassError(result.message || 'Password reset failed');
+    }
   };
 
   return (
@@ -123,6 +145,12 @@ export default function ForgotPassword() {
               {step === 5 && "Create new password"}
             </p>
           </div>
+        </div>
+      )}
+
+      {generalError && (
+        <div className="bg-destructive/10 border border-destructive/20 text-destructive text-sm rounded-xl p-3 mb-4 animate-fade-in relative z-10">
+          {generalError}
         </div>
       )}
 
@@ -152,14 +180,18 @@ export default function ForgotPassword() {
         {step === 2 && (
           <div className="space-y-3 animate-fade-in">
             <p className="text-sm text-muted-foreground mb-4">We found multiple accounts matching your search. Please select yours.</p>
-            {mockUsers.map(user => (
+            {usersList.map(user => (
               <button key={user.id} onClick={() => handleSelectUser(user)} className="w-full flex items-center gap-4 p-4 bg-background/50 hover:bg-secondary border border-border rounded-xl transition-all text-left group">
-                <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  {user.avatar}
+                <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:bg-primary group-hover:text-primary-foreground transition-colors overflow-hidden shrink-0">
+                  {user.image ? (
+                    <img src={user.image} alt={user.fullName} className="w-full h-full object-cover" />
+                  ) : (
+                    user.fullName?.charAt(0) || 'U'
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-sm truncate">{user.name}</p>
-                  <p className="text-xs text-muted-foreground truncate">{user.email}</p>
+                  <p className="font-semibold text-sm truncate">{user.fullName}</p>
+                  <p className="text-xs text-muted-foreground truncate">{user.email || user.phone}</p>
                 </div>
                 <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground" />
               </button>
@@ -171,42 +203,54 @@ export default function ForgotPassword() {
         {step === 3 && selectedUser && (
           <div className="space-y-4 animate-fade-in">
             <div className="flex items-center gap-3 p-3 bg-secondary/50 rounded-lg mb-6">
-              <UserCircle className="w-10 h-10 text-primary" />
+              {selectedUser.image ? (
+                <div className="w-10 h-10 rounded-full overflow-hidden shrink-0">
+                  <img src={selectedUser.image} alt={selectedUser.fullName} className="w-full h-full object-cover" />
+                </div>
+              ) : (
+                <UserCircle className="w-10 h-10 text-primary shrink-0" />
+              )}
               <div>
-                <p className="text-sm font-medium">{selectedUser.name}</p>
+                <p className="text-sm font-medium">{selectedUser.fullName}</p>
                 <p className="text-xs text-muted-foreground">Select where to send the OTP</p>
               </div>
             </div>
 
-            <button onClick={() => handleSendOTP('email')} disabled={isLoading} className="w-full flex items-center gap-4 p-4 bg-background/50 hover:bg-secondary border border-border rounded-xl transition-all text-left">
-              <div className="w-10 h-10 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center">
-                <Mail className="w-5 h-5" />
-              </div>
-              <div className="flex-1">
-                <p className="font-semibold text-sm">Send via Email</p>
-                <p className="text-xs text-muted-foreground">{selectedUser.email}</p>
-              </div>
-            </button>
+            {selectedUser.hasEmail && (
+              <button onClick={() => handleSendOTP('email')} disabled={isLoading} className="w-full flex items-center gap-4 p-4 bg-background/50 hover:bg-secondary border border-border rounded-xl transition-all text-left">
+                <div className="w-10 h-10 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold text-sm">Send via Email</p>
+                  <p className="text-xs text-muted-foreground">{selectedUser.email}</p>
+                </div>
+              </button>
+            )}
 
-            <button onClick={() => handleSendOTP('sms')} disabled={isLoading} className="w-full flex items-center gap-4 p-4 bg-background/50 hover:bg-secondary border border-border rounded-xl transition-all text-left">
-              <div className="w-10 h-10 rounded-full bg-green-500/10 text-green-500 flex items-center justify-center">
-                <MessageSquare className="w-5 h-5" />
-              </div>
-              <div className="flex-1">
-                <p className="font-semibold text-sm">Send via SMS</p>
-                <p className="text-xs text-muted-foreground">{selectedUser.phone}</p>
-              </div>
-            </button>
-            
-            <button onClick={() => handleSendOTP('whatsapp')} disabled={isLoading} className="w-full flex items-center gap-4 p-4 bg-background/50 hover:bg-secondary border border-border rounded-xl transition-all text-left">
-              <div className="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
-                <Phone className="w-5 h-5" />
-              </div>
-              <div className="flex-1">
-                <p className="font-semibold text-sm">Send via WhatsApp</p>
-                <p className="text-xs text-muted-foreground">{selectedUser.phone}</p>
-              </div>
-            </button>
+            {selectedUser.hasPhone && (
+              <>
+                <button onClick={() => handleSendOTP('sms')} disabled={isLoading} className="w-full flex items-center gap-4 p-4 bg-background/50 hover:bg-secondary border border-border rounded-xl transition-all text-left">
+                  <div className="w-10 h-10 rounded-full bg-green-500/10 text-green-500 flex items-center justify-center">
+                    <MessageSquare className="w-5 h-5" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-sm">Send via SMS</p>
+                    <p className="text-xs text-muted-foreground">{selectedUser.phone}</p>
+                  </div>
+                </button>
+                
+                <button onClick={() => handleSendOTP('whatsapp')} disabled={isLoading} className="w-full flex items-center gap-4 p-4 bg-background/50 hover:bg-secondary border border-border rounded-xl transition-all text-left">
+                  <div className="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-sm">Send via WhatsApp</p>
+                    <p className="text-xs text-muted-foreground">{selectedUser.phone}</p>
+                  </div>
+                </button>
+              </>
+            )}
           </div>
         )}
 
@@ -241,7 +285,7 @@ export default function ForgotPassword() {
               </button>
             </div>
 
-            <button onClick={handleVerifyOTP} disabled={isLoading || otp.join('').length !== 6} className="w-full h-12 bg-primary text-primary-foreground rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all disabled:opacity-50">
+            <button onClick={handleVerifyOTP} disabled={isLoading || otp.join('').length !== 4} className="w-full h-12 bg-primary text-primary-foreground rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all disabled:opacity-50">
               {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Verify Code'}
             </button>
           </div>

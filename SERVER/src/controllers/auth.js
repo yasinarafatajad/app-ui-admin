@@ -83,7 +83,7 @@ const sendEmailOtp = async (email, otp) => {
         const mailOptions = {
             from: process.env.EMAIL_USER || 'your-email@gmail.com',
             to: email,
-            subject: 'Password Reset OTP - Mango Shop',
+            subject: 'Mango Shop | Reset Password',
             text: `Your OTP for password reset is: ${otp}. It is valid for 5 minutes.`
         };
 
